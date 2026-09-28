@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Website Prompt Collection</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f3f6fb;color:#172033}
+header{background:linear-gradient(135deg,#111827,#2563eb);color:#fff;text-align:center;padding:42px 18px}
+header h1{margin:0 0 10px;font-size:32px}
+header p{margin:0;opacity:.9}
+.container{max-width:1000px;margin:28px auto;padding:0 16px}
+.note{background:#eaf2ff;border-left:4px solid #2563eb;padding:15px;border-radius:10px;margin-bottom:24px}
+.card{background:#fff;border-radius:18px;padding:22px;margin-bottom:20px;box-shadow:0 8px 25px rgba(0,0,0,.07)}
+.card h2{margin:0 0 8px;color:#2563eb}
+.card p{margin:0 0 14px;color:#667085}
+textarea{width:100%;min-height:260px;border:1px solid #d8dee8;border-radius:12px;padding:15px;font-size:14px;line-height:1.6;resize:vertical;background:#f8fafc;color:#172033}
+button{margin-top:12px;border:0;border-radius:10px;padding:11px 18px;background:#2563eb;color:#fff;font-weight:bold;cursor:pointer}
+button:hover{background:#1d4ed8}
+button.copied{background:#16a34a}
+footer{text-align:center;padding:28px;color:#667085}
+</style>
+</head>
+<body>
+
+<header>
+<h1>🌐 AI Website Prompt Collection</h1>
+<p>Copy • Paste • Customize • Create</p>
+</header>
+
+<div class="container">
+<div class="note">
+<strong>How to use:</strong> Replace the details inside [ ] and press <b>Copy Prompt</b>. Then paste it into ChatGPT, DeepSeek or any AI tool.
+</div>
+
+<div id="prompts"></div>
+</div>
+
+<footer>AI Website Prompt Collection</footer>
+
+<script>
+const prompts = [
+["👤 Personal Portfolio Website",`Create a modern, professional and responsive personal portfolio website using HTML, CSS and JavaScript.
+
+Name: [Your Name]
+Address: [Your Address]
+Phone: [Your Phone]
+Email: [Your Email]
+WhatsApp: [Your WhatsApp]
+About: [Short About Me]
+
+Include Home, About, Skills, Projects and Contact sections. Add social media links, WhatsApp button, attractive animations and mobile responsiveness. Make it ready for GitHub Pages.`],
+
+["🏪 Shop / Business Website",`Create a modern, professional and responsive website for my shop/business using HTML, CSS and JavaScript.
+
+Shop Name: [Shop Name]
+Address: [Shop Address]
+Phone: [Phone]
+WhatsApp: [WhatsApp]
+Email: [Email]
+
+Include Home, About, Products, Services and Contact sections. Add product images, prices and WhatsApp order buttons. Make it mobile-friendly and ready for GitHub Pages.`],
+
+["🎓 School / Academy Website",`Create a modern, professional and responsive website for my school/academy using HTML, CSS and JavaScript.
+
+Name: [School/Academy Name]
+Address: [Address]
+Phone: [Phone]
+Email: [Email]
+About: [Short Description]
+
+Include Home, About, Courses, Teachers, Gallery and Contact sections. Add WhatsApp button, social links and mobile-friendly design. Make it ready for GitHub Pages.`],
+
+["🍽️ Restaurant Website",`Create a modern, attractive and responsive restaurant website using HTML, CSS and JavaScript.
+
+Restaurant Name: [Restaurant Name]
+Address: [Address]
+Phone: [Phone]
+WhatsApp: [WhatsApp]
+
+Include Home, About, Menu, Special Offers, Gallery and Contact sections. Add food images, prices, WhatsApp order button and Google Maps link. Make it mobile-friendly and ready for GitHub Pages.`],
+
+["📸 Photographer Portfolio",`Create a modern, elegant and responsive photographer portfolio website using HTML, CSS and JavaScript.
+
+Name: [Photographer Name]
+Location: [Location]
+Phone: [Phone]
+WhatsApp: [WhatsApp]
+Instagram: [Instagram Link]
+
+Include Home, About, Portfolio/Gallery, Services, Packages and Contact sections. Add image gallery, social links, WhatsApp button and smooth animations. Make it ready for GitHub Pages.`],
+
+["💼 Freelancer Website",`Create a modern, professional and responsive freelancer portfolio website using HTML, CSS and JavaScript.
+
+Name: [Your Name]
+Profession: [Your Profession]
+Location: [Location]
+Email: [Email]
+WhatsApp: [WhatsApp]
+
+Include Home, About, Skills, Services, Projects, Testimonials and Contact sections. Add WhatsApp and social media buttons. Make it mobile-friendly and ready for GitHub Pages.`],
+
+["🏢 Small Business Website",`Create a clean, modern and responsive website for my small business using HTML, CSS and JavaScript.
+
+Business Name: [Business Name]
+Address: [Address]
+Phone: [Phone]
+WhatsApp: [WhatsApp]
+Email: [Email]
+
+Include Home, About, Services, Gallery, Reviews and Contact sections. Add WhatsApp button, Google Maps link and social media links. Make it mobile-friendly and ready for GitHub Pages.`],
+
+["🛍️ Product Landing Page",`Create a modern responsive product landing page using HTML, CSS and JavaScript.
+
+Product Name: [Product Name]
+Price: [Price]
+Description: [Description]
+WhatsApp: [WhatsApp]
+Website/Shop Name: [Name]
+
+Include product image, features, benefits, price, customer reviews and a prominent WhatsApp order button. Make the design professional, mobile-friendly and ready for GitHub Pages.`],
+
+["▶️ YouTube Channel Website",`Create a modern, professional and responsive website for my YouTube channel using HTML, CSS and JavaScript.
+
+Channel Name: [Channel Name]
+YouTube Link: [YouTube Link]
+About: [Channel Description]
+Email: [Email]
+WhatsApp: [WhatsApp]
+
+Include Home, About, Latest Videos, Popular Videos and Contact sections. Add YouTube subscribe button, video thumbnails, social links and mobile responsiveness. Make it ready for GitHub Pages.`],
+
+["🧑‍🏫 Teacher Portfolio Website",`Create a modern and professional responsive teacher portfolio website using HTML, CSS and JavaScript.
+
+Name: [Teacher Name]
+Subject: [Subject]
+School: [School Name]
+Address: [Address]
+Email: [Email]
+WhatsApp: [WhatsApp]
+
+Include Home, About, Qualifications, Subjects, Teaching Experience, Resources and Contact sections. Add WhatsApp and social links. Make it mobile-friendly and ready for GitHub Pages.`]
+];
+
+const box=document.getElementById("prompts");
+
+prompts.forEach((item,index)=>{
+  const card=document.createElement("div");
+  card.className="card";
+  card.innerHTML=`
+    <h2>${item[0]}</h2>
+    <p>Copy this prompt and customize the details.</p>
+    <textarea id="prompt${index}" readonly></textarea>
+    <button onclick="copyPrompt(${index},this)">📋 Copy Prompt</button>
+  `;
+  box.appendChild(card);
+  document.getElementById("prompt"+index).value=item[1];
+});
+
+function copyPrompt(index,button){
+  const text=document.getElementById("prompt"+index).value;
+  navigator.clipboard.writeText(text).then(()=>{
+    button.textContent="✅ Copied!";
+    button.classList.add("copied");
+    setTimeout(()=>{
+      button.textContent="📋 Copy Prompt";
+      button.classList.remove("copied");
+    },1800);
+  }).catch(()=>{
+    const area=document.getElementById("prompt"+index);
+    area.select();
+    document.execCommand("copy");
+    button.textContent="✅ Copied!";
+    setTimeout(()=>button.textContent="📋 Copy Prompt",1800);
+  });
+}
+</script>
+</body>
+</html>
